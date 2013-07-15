@@ -24,10 +24,23 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+// Only use this class from the main application.
+// The class sets up the agent that will allow you to communicate with background processes.
+@interface OEXPCCAgentConfiguration : NSObject
+
++ (OEXPCCAgentConfiguration *)defaultConfiguration;
+- (void)tearDownAgent;
+
+@property(readonly) NSString *serviceName;
+
+// You need to pass two arguments to processes you want to connect to from the process
+// initiating the connection: the service name argument and the process identifier
+// argument. You obtain the former using -agentServiceNameProcessArgument and use
+// -processIdentifierArgumentForIdentifier: to generate the latter. The identifier
+// must be unique so it's preferrable to use NSUUID to generate it.
+- (NSString *)agentServiceNameProcessArgument;
+- (NSString *)processIdentifierArgumentForIdentifier:(NSString *)identifier;
+
+@end

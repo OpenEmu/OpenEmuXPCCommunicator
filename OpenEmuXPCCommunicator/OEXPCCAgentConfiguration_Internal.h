@@ -24,10 +24,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import "OEXPCCAgentConfiguration.h"
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+extern NSString *const _OEXPCCAgentServiceNameArgumentPrefix;
+extern NSString *const _OEXPCCAgentProcessIdentifierArgumentPrefix;
+extern NSString *const _OEXPCCAgentServiceNamePrefix;
+
+@interface OEXPCCAgentConfiguration ()
++ (OEXPCCAgentConfiguration *)OEXPCC_defaultConfigurationCreateIfNeeded:(BOOL)createIfNeeded;
+@end

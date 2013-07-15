@@ -24,10 +24,14 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Cocoa/Cocoa.h>
+#import "ProcessWrapper.h"
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@property (assign) IBOutlet NSWindow *window;
+
+@property IBOutlet ProcessWrapper *wrapper1;
+@property IBOutlet ProcessWrapper *wrapper2;
+
+@end

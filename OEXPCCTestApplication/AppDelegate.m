@@ -24,10 +24,26 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import "AppDelegate.h"
+#import <OpenEmuXPCCommunicator/OpenEmuXPCCommunicator.h>
+#import "ProcessWrapper.h"
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@implementation AppDelegate
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [OEXPCCAgentConfiguration defaultConfiguration];
+    [OEXPCCAgent defaultAgent];
+
+    [[self wrapper1] setUpWithProcessIdentifier:@"Wrapper 1"];
+    [[self wrapper2] setUpWithProcessIdentifier:@"Wrapper 2"];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [[self wrapper1] terminate];
+    [[self wrapper2] terminate];
+    [[OEXPCCAgentConfiguration defaultConfiguration] tearDownAgent];
+}
+
+@end

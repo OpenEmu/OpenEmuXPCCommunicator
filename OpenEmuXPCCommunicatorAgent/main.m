@@ -24,10 +24,18 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
+#import "OEXPCCMatchMaker.h"
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+int main(int argc, const char * argv[])
+{
+    @autoreleasepool
+    {
+        NSString *serviceName = [[[NSProcessInfo processInfo] arguments][0] lastPathComponent];
+        __attribute__((objc_precise_lifetime)) OEXPCCMatchMaker *matchMaker = [[OEXPCCMatchMaker alloc] initWithServiceName:serviceName];
+
+        [matchMaker resumeConnection];
+    }
+    return 0;
+}
+

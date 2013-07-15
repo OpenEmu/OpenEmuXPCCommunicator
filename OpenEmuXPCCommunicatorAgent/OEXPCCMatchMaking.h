@@ -24,10 +24,9 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@protocol OEXPCCMatchMaking <NSObject>
+- (void)registerListenerEndpoint:(NSXPCListenerEndpoint *)endpoint forIdentifier:(NSString *)identifier completionHandler:(void(^)(BOOL success))handler;
+- (void)retrieveListenerEndpointForIdentifier:(NSString *)identifier completionHandler:(void(^)(NSXPCListenerEndpoint *endpoint))handler;
+@end

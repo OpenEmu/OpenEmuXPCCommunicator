@@ -24,10 +24,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@protocol OEXPCCTestBackgroundService <NSObject>
+- (void)transformString:(NSString *)string completionHandler:(void(^)(NSString *result))handler;
+@end

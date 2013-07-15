@@ -24,10 +24,10 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
+#import "OEXPCCMatchMaking.h"
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@interface OEXPCCMatchMaker : NSObject <OEXPCCMatchMaking>
+- (id)initWithServiceName:(NSString *)serviceName;
+- (void)resumeConnection;
+@end

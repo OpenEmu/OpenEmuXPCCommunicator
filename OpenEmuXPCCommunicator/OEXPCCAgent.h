@@ -24,10 +24,21 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
-//
+#import <Foundation/Foundation.h>
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
+@interface OEXPCCAgent : NSObject
+
+// Get the agent based on the process arguments or the +[OEXPCCAgentConfiguration sharedConfiguration] if set up.
++ (OEXPCCAgent *)defaultAgent;
+
+// Extract the process identifier from the arguments, returns nil if it can't be found.
++ (NSString *)defaultProcessIdentifier;
+
+- (id)initWithServiceName:(NSString *)serviceName;
+
+@property(readonly) NSString *serviceName;
+
+- (void)registerListenerEndpoint:(NSXPCListenerEndpoint *)endpoint forIdentifier:(NSString *)identifier completionHandler:(void(^)(BOOL success))handler;
+- (void)retrieveListenerEndpointForIdentifier:(NSString *)identifier completionHandler:(void(^)(NSXPCListenerEndpoint *endpoint))handler;
+
+@end

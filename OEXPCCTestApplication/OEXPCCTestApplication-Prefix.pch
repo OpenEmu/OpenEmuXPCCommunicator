@@ -25,9 +25,10 @@
  */
 
 //
-// Prefix header for all source files of the 'OpenEmuXPCCommunicator' target in the 'OpenEmuXPCCommunicator' project
+// Prefix header for all source files of the 'OEXPCCTestApplication' target in the 'OEXPCCTestApplication' project
 //
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <OpenEmuXPCCommunicator/OpenEmuXPCCommunicator.h>
 #endif
