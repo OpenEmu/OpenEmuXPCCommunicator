@@ -28,6 +28,8 @@
 
 @interface OEXPCCAgent : NSObject
 
++ (BOOL)canParseProcessArgumentsForDefaultAgent;
+
 // Get the agent based on the process arguments or the +[OEXPCCAgentConfiguration sharedConfiguration] if set up.
 + (OEXPCCAgent *)defaultAgent;
 

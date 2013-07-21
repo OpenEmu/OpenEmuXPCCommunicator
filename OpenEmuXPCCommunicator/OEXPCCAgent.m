@@ -48,6 +48,11 @@
     return [[OEXPCCAgentConfiguration OEXPCC_defaultConfigurationCreateIfNeeded:NO] serviceName];
 }
 
++ (BOOL)canParseProcessArgumentsForDefaultAgent
+{
+    return [self OEXPCC_serviceNameFromArguments] != nil && [self defaultProcessIdentifier] != nil;
+}
+
 + (OEXPCCAgent *)defaultAgent;
 {
     static OEXPCCAgent *defaultAgent = nil;
