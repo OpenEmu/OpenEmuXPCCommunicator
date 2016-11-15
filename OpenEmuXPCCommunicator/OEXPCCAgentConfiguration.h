@@ -33,6 +33,11 @@
 + (OEXPCCAgentConfiguration *)defaultConfiguration;
 - (void)tearDownAgent;
 
+// Directory containing the agent binaries (Application Support).
+// If for any reason -tearDownAgent hasn't been called on app termination, you may use this method
+// to cleanup the folder.
++ (NSString *)agentsDirectory;
+
 @property(readonly) NSString *serviceName;
 
 // You need to pass two arguments to processes you want to connect to from the process
