@@ -65,7 +65,7 @@ NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
         _serviceName = [@[ _OEXPCCAgentServiceNamePrefix, [[NSUUID UUID] UUIDString] ] componentsJoinedByString:@""];
         _serviceNameArgument = [@[ _OEXPCCAgentServiceNameArgumentPrefix, _serviceName ] componentsJoinedByString:@""];
 
-        _agentProcessPath = [[self OEXPCC_agentsApplicationSupportFolderPath] stringByAppendingPathComponent:_serviceName];
+        _agentProcessPath = [[[self class] OEXPCC_agentsApplicationSupportFolderPath] stringByAppendingPathComponent:_serviceName];
         _agentPlistPath = [_agentProcessPath stringByAppendingPathExtension:@"plist"];
 
         [self OEXPCC_setUpAgent];
