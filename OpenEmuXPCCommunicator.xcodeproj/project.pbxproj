@@ -196,6 +196,7 @@
 				C643AC5217935A9A00456656 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		C643AC5217935A9A00456656 /* Products */ = {
 			isa = PBXGroup;
