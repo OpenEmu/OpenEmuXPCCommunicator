@@ -35,5 +35,15 @@
 
 - (IBAction)transformOrigin:(id)sender;
 
+#pragma mark - attached service
+
+@property IBOutlet NSButton *serviceConnectButton;
+@property IBOutlet NSStackView *serviceControlsGroup;
+@property IBOutlet NSTextField *serviceOriginTextField;
+@property IBOutlet NSTextField *serviceResultTextField;
+
+- (IBAction)serviceConnectToggle:(id)sender;
+- (IBAction)serviceTransformOrigin:(id)sender;
+
 - (void)terminate;
 @end

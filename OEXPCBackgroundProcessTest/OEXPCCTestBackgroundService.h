@@ -26,6 +26,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol OEXPCTransformer <NSObject>
+- (void)instanceID:(void(^)(NSUInteger i))reply;
+- (void)upper:(NSString *)message completionHandler:(void(^)(NSString *result))handler;
+@end
+
 @protocol OEXPCCTestBackgroundService <NSObject>
 - (void)transformString:(NSString *)string completionHandler:(void(^)(NSString *result))handler;
+- (void)getTransformer:(void (^)(id<OEXPCTransformer>))reply;
 @end

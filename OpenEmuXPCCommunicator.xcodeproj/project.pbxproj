@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05F6380922DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F6380722DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05F6380A22DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F6380822DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.m */; };
 		C643AC5517935A9B00456656 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C643AC5417935A9B00456656 /* Cocoa.framework */; };
 		C643AC5F17935A9B00456656 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C643AC5D17935A9B00456656 /* InfoPlist.strings */; };
 		C643AC6F17935C1200456656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C643AC6E17935C1200456656 /* Foundation.framework */; };
@@ -105,6 +107,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05F6380722DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OEXPCCAgent+DebugSupport.h"; sourceTree = "<group>"; };
+		05F6380822DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OEXPCCAgent+DebugSupport.m"; sourceTree = "<group>"; };
 		C643AC5117935A9A00456656 /* OpenEmuXPCCommunicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenEmuXPCCommunicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C643AC5417935A9B00456656 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C643AC5717935A9B00456656 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -238,6 +242,8 @@
 				C643AC88179381FC00456656 /* OEXPCCAgentConfiguration_Internal.h */,
 				C643AC8017937A3300456656 /* OEXPCCAgent.h */,
 				C643AC8117937A3300456656 /* OEXPCCAgent.m */,
+				05F6380722DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.h */,
+				05F6380822DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.m */,
 				C643AC5B17935A9B00456656 /* Supporting Files */,
 			);
 			path = OpenEmuXPCCommunicator;
@@ -329,6 +335,7 @@
 				C643AC8217937A3300456656 /* OEXPCCAgent.h in Headers */,
 				C643AC8617937C3600456656 /* OEXPCCAgentConfiguration.h in Headers */,
 				C643AC7B17935E1300456656 /* OEXPCCMatchMaker.h in Headers */,
+				05F6380922DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.h in Headers */,
 				C643AC7F17935ED900456656 /* OEXPCCMatchMaking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +431,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = C643AC4717935A9A00456656;
@@ -469,6 +477,7 @@
 			files = (
 				C643AC8317937A3300456656 /* OEXPCCAgent.m in Sources */,
 				C643AC8717937C3600456656 /* OEXPCCAgentConfiguration.m in Sources */,
+				05F6380A22DFFB3700FC49FF /* OEXPCCAgent+DebugSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

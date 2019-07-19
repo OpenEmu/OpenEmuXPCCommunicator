@@ -28,12 +28,21 @@
 #import <OpenEmuXPCCommunicator/OpenEmuXPCCommunicator.h>
 #import "OEXPCCTestBackgroundService.h"
 
+@interface TestTransfomer : NSObject <OEXPCTransformer>
+- (void)instanceID:(void(^)(NSUInteger i))reply;
+- (void)upper:(NSString *)message completionHandler:(void(^)(NSString *result))handle;
+@end
+
 @interface ServiceProvider : NSObject <OEXPCCTestBackgroundService, NSXPCListenerDelegate, NSApplicationDelegate>
 - (void)resumeConnection;
 @end
 
 int main(int argc, const char * argv[])
 {
+#if 0
+    [OEXPCCAgent waitForDebuggerUntil:5 * NSEC_PER_SEC];
+#endif
+
     @autoreleasepool
     {
         NSApplication *app = [NSApplication sharedApplication];
@@ -44,6 +53,48 @@ int main(int argc, const char * argv[])
     }
     return 0;
 }
+
+@implementation TestTransfomer
+{
+    NSUInteger _id;
+    NSString   *_name;
+}
+
+- (instancetype)init
+{
+    if ((self = [super init])) {
+        static NSUInteger count = 0;
+        
+        @synchronized (TestTransfomer.class) {
+            count++;
+            _id = count;
+        }
+        
+        _name = [NSString stringWithFormat:@"TestTransformer#%lu", _id];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    NSLog(@"dealloc: %@", self.description);
+}
+
+- (NSString *)description {
+    return _name;
+}
+
+- (void)instanceID:(void(^)(NSUInteger i))reply
+{
+    reply(_id);
+}
+
+- (void)upper:(NSString *)message completionHandler:(void(^)(NSString *result))handler
+{
+    handler([NSString stringWithFormat:@"<%@> %@: %@", [OEXPCCAgent defaultProcessIdentifier], self.description, message.uppercaseString]);
+}
+
+@end
 
 @implementation ServiceProvider
 {
@@ -64,9 +115,18 @@ int main(int argc, const char * argv[])
 - (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection
 {
     _mainAppConnection = newConnection;
-    [_mainAppConnection setExportedInterface:[NSXPCInterface interfaceWithProtocol:@protocol(OEXPCCTestBackgroundService)]];
+    
+    NSXPCInterface *service = [NSXPCInterface interfaceWithProtocol:@protocol(OEXPCCTestBackgroundService)];
+    
+    [_mainAppConnection setExportedInterface:service];
     [_mainAppConnection setExportedObject:self];
     [_mainAppConnection resume];
+    
+    // Register OEXPCTransformer interface as argument 0 of the reply
+    [service setInterface:[NSXPCInterface interfaceWithProtocol:@protocol(OEXPCTransformer)]
+              forSelector:@selector(getTransformer:)
+            argumentIndex:0
+                  ofReply:YES];
 
     return YES;
 }
@@ -75,5 +135,11 @@ int main(int argc, const char * argv[])
 {
     handler([NSString stringWithFormat:@"<%@>: %@", [OEXPCCAgent defaultProcessIdentifier], string]);
 }
+
+- (void)getTransformer:(void (^)(id<OEXPCTransformer>))reply
+{
+    reply([TestTransfomer new]);
+}
+
 
 @end

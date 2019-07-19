@@ -28,36 +28,88 @@
 #import <OpenEmuXPCCommunicator/OpenEmuXPCCommunicator.h>
 #import "OEXPCCTestBackgroundService.h"
 
+@interface NSView (Custom)
+    -(void) setEnabled:(BOOL) isEnabled;
+@end
+
 @implementation ProcessWrapper
 {
     NSTask *_processTask;
     NSXPCConnection *_processConnection;
     id<OEXPCCTestBackgroundService> _remoteObjectProxy;
+    id<OEXPCTransformer> _transformer;
 }
 
 - (void)setUpWithProcessIdentifier:(NSString *)identifier;
 {
     if(identifier == nil) identifier = [[NSUUID UUID] UUIDString];
-
+    
     _identifier = [identifier copy];
-
+    
     OEXPCCAgentConfiguration *configuration = [OEXPCCAgentConfiguration defaultConfiguration];
-
+    
     _processTask = [[NSTask alloc] init];
     [_processTask setLaunchPath:[[NSBundle mainBundle] pathForResource:@"OEXPCBackgroundProcessTest" ofType:nil]];
     [_processTask setArguments:@[ [configuration agentServiceNameProcessArgument], [configuration processIdentifierArgumentForIdentifier:_identifier] ]];
-
+    
     [_processTask launch];
-
+    
+    self.serviceConnectButton.enabled = NO;
+    [self.serviceControlsGroup setEnabled:NO];
+    
     [[OEXPCCAgent defaultAgent] retrieveListenerEndpointForIdentifier:_identifier completionHandler:
      ^(NSXPCListenerEndpoint *endpoint)
      {
-         _processConnection = [[NSXPCConnection alloc] initWithListenerEndpoint:endpoint];
-         [_processConnection setRemoteObjectInterface:[NSXPCInterface interfaceWithProtocol:@protocol(OEXPCCTestBackgroundService)]];
-         [_processConnection resume];
+        _processConnection = [[NSXPCConnection alloc] initWithListenerEndpoint:endpoint];
+        NSXPCInterface *service = [NSXPCInterface interfaceWithProtocol:@protocol(OEXPCCTestBackgroundService)];
+        [_processConnection setRemoteObjectInterface:service];
+        [_processConnection resume];
+        
+        // Register OEXPCTransformer interface as argument 0 of the reply
+        [service setInterface:[NSXPCInterface interfaceWithProtocol:@protocol(OEXPCTransformer)]
+                  forSelector:@selector(getTransformer:)
+                argumentIndex:0
+                      ofReply:YES];
+        
+        _remoteObjectProxy = [_processConnection remoteObjectProxy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.serviceConnectButton.enabled = YES;
+        });
+    }];
+}
 
-         _remoteObjectProxy = [_processConnection remoteObjectProxy];
-     }];
+- (IBAction)serviceConnectToggle:(id)sender
+{
+    __block NSButton *btn = sender;
+    [btn setEnabled:NO];
+    [self.serviceControlsGroup setEnabled:NO];
+    
+    if (_transformer == nil)
+    {
+        [_remoteObjectProxy getTransformer:^(id<OEXPCTransformer> obj) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _transformer = obj;
+                btn.title = @"Disconnect";
+                [btn setEnabled:YES];
+                [self.serviceControlsGroup setEnabled:YES];
+            });
+        }];
+    }
+    else
+    {
+        _transformer = nil;
+        btn.title = @"Connect";
+        [btn setEnabled:YES];
+    }
+}
+
+- (IBAction)serviceTransformOrigin:(id)sender
+{
+    [_transformer upper:self.serviceOriginTextField.stringValue completionHandler:^(NSString *result) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.serviceResultTextField.stringValue = result;
+        });
+    }];
 }
 
 - (IBAction)transformOrigin:(id)sender
@@ -65,15 +117,33 @@
     [_remoteObjectProxy transformString:[[self originTextField] stringValue] completionHandler:
      ^(NSString *result)
      {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [[self resultTextField] setStringValue:result];
-         });
-     }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self resultTextField] setStringValue:result];
+        });
+    }];
 }
 
 - (void)terminate
 {
     [_processTask terminate];
+}
+
+@end
+
+@implementation NSView (Custom)
+
+-(void) setEnabled:(BOOL) isEnabled{
+
+    for (NSView* subView in self.subviews) {
+
+        if ([subView isKindOfClass:[NSControl class]]) {
+
+            [(NSControl*)subView setEnabled:isEnabled];
+        }else  if ([subView isKindOfClass:[NSView class]]) {
+
+            [subView setEnabled:isEnabled];
+        }
+    }
 }
 
 @end

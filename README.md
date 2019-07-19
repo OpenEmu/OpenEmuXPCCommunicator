@@ -79,6 +79,13 @@ Get the defaultAgent, register the endpoint on one side, retrieve the endpoint o
          [remoteObjectProxy handshake];
      }];
 
+#### Debugging
+
+Debugging the background service process can be simplified by inserting a call to `- [OEXPCCAgent waitForDebugger]`. Usually this is done the the `main` function.
+
+When calling `waitForDebugger`, the process won't continue until a debugger, such as Xcode, is attached.
+
+
 Important
 ---------
 
