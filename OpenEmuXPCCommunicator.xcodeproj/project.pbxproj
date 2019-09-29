@@ -640,6 +640,7 @@
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Prefix.pch";
 				INFOPLIST_FILE = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -657,6 +658,7 @@
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Prefix.pch";
 				INFOPLIST_FILE = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
