@@ -664,6 +664,8 @@
 		C643AC6717935A9B00456656 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -682,6 +684,8 @@
 		C643AC6817935A9B00456656 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -700,6 +704,8 @@
 		C643AC7817935C1200456656 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -709,6 +715,8 @@
 		C643AC7917935C1200456656 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
