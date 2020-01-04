@@ -13,7 +13,6 @@
 		C643AC5F17935A9B00456656 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C643AC5D17935A9B00456656 /* InfoPlist.strings */; };
 		C643AC6F17935C1200456656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C643AC6E17935C1200456656 /* Foundation.framework */; };
 		C643AC7217935C1200456656 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C643AC7117935C1200456656 /* main.m */; };
-		C643AC7617935C1200456656 /* OpenEmuXPCCommunicatorAgent.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C643AC7517935C1200456656 /* OpenEmuXPCCommunicatorAgent.1 */; };
 		C643AC7B17935E1300456656 /* OEXPCCMatchMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = C643AC7A17935E1200456656 /* OEXPCCMatchMaker.h */; };
 		C643AC7D17935EB100456656 /* OEXPCCMatchMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C643AC7C17935EB100456656 /* OEXPCCMatchMaker.m */; };
 		C643AC7F17935ED900456656 /* OEXPCCMatchMaking.h in Headers */ = {isa = PBXBuildFile; fileRef = C643AC7E17935ED900456656 /* OEXPCCMatchMaking.h */; };
@@ -79,7 +78,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				C643AC7617935C1200456656 /* OpenEmuXPCCommunicatorAgent.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -122,7 +120,6 @@
 		C643AC6E17935C1200456656 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C643AC7117935C1200456656 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C643AC7417935C1200456656 /* OpenEmuXPCCommunicatorAgent-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenEmuXPCCommunicatorAgent-Prefix.pch"; sourceTree = "<group>"; };
-		C643AC7517935C1200456656 /* OpenEmuXPCCommunicatorAgent.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenEmuXPCCommunicatorAgent.1; sourceTree = "<group>"; };
 		C643AC7A17935E1200456656 /* OEXPCCMatchMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEXPCCMatchMaker.h; sourceTree = "<group>"; };
 		C643AC7C17935EB100456656 /* OEXPCCMatchMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEXPCCMatchMaker.m; sourceTree = "<group>"; };
 		C643AC7E17935ED900456656 /* OEXPCCMatchMaking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEXPCCMatchMaking.h; sourceTree = "<group>"; };
@@ -266,7 +263,6 @@
 				C643AC7E17935ED900456656 /* OEXPCCMatchMaking.h */,
 				C643AC7A17935E1200456656 /* OEXPCCMatchMaker.h */,
 				C643AC7C17935EB100456656 /* OEXPCCMatchMaker.m */,
-				C643AC7517935C1200456656 /* OpenEmuXPCCommunicatorAgent.1 */,
 				C643AC7317935C1200456656 /* Supporting Files */,
 			);
 			path = OpenEmuXPCCommunicatorAgent;
@@ -674,9 +670,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Prefix.pch";
 				INFOPLIST_FILE = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -694,9 +690,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Prefix.pch";
 				INFOPLIST_FILE = "OpenEmuXPCCommunicator/OpenEmuXPCCommunicator-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -709,6 +705,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -720,6 +717,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
