@@ -87,35 +87,35 @@
 - (void)registerListenerEndpoint:(NSXPCListenerEndpoint *)endpoint forIdentifier:(NSString *)identifier completionHandler:(void (^)(BOOL))handler
 {
     dispatch_async(_listenerQueue, ^{
-        void (^clientBlock)(NSXPCListenerEndpoint *) = _pendingClients[identifier];
+        void (^clientBlock)(NSXPCListenerEndpoint *) = self->_pendingClients[identifier];
 
         if(clientBlock == nil)
         {
-            _pendingListeners[identifier] = [OEXPCCMatchMakerListener matchMakerListenerWithEndpoint:endpoint handler:handler];
+            self->_pendingListeners[identifier] = [OEXPCCMatchMakerListener matchMakerListenerWithEndpoint:endpoint handler:handler];
             return;
         }
 
         clientBlock(endpoint);
         handler(YES);
-        [_pendingClients removeObjectForKey:identifier];
+        [self->_pendingClients removeObjectForKey:identifier];
     });
 }
 
 - (void)retrieveListenerEndpointForIdentifier:(NSString *)identifier completionHandler:(void (^)(NSXPCListenerEndpoint *))handler
 {
     dispatch_async(_listenerQueue, ^{
-        OEXPCCMatchMakerListener *listener = _pendingListeners[identifier];
+        OEXPCCMatchMakerListener *listener = self->_pendingListeners[identifier];
 
         if(listener == nil)
         {
-            _pendingClients[identifier] = [handler copy];
+            self->_pendingClients[identifier] = [handler copy];
             return;
         }
 
         handler([listener endpoint]);
 
         [listener handler](YES);
-        [_pendingListeners removeObjectForKey:identifier];
+        [self->_pendingListeners removeObjectForKey:identifier];
     });
 }
 
