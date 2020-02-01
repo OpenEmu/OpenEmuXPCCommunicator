@@ -421,6 +421,14 @@
 			attributes = {
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "OpenEmu Team";
+				TargetAttributes = {
+					C643AC5017935A9A00456656 = {
+						ProvisioningStyle = Manual;
+					};
+					C643AC6C17935C1200456656 = {
+						ProvisioningStyle = Manual;
+					};
+				};
 			};
 			buildConfigurationList = C643AC4B17935A9A00456656 /* Build configuration list for PBXProject "OpenEmuXPCCommunicator" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -609,7 +617,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -652,7 +660,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				SDKROOT = macosx;
 			};
 			name = Release;
