@@ -22,7 +22,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "OEXPCCAgent+DebugSupport.h"
+#import "OEXPCDebugSupport.h"
 
 #import <AppKit/AppKit.h>
 
@@ -34,7 +34,7 @@
 #import <stdatomic.h>
 
 
-@implementation OEXPCCAgent (DebugSupport)
+@implementation OEXPCCDebugSupport
 
 + (BOOL)debuggerAttached
 {

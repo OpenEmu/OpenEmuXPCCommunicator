@@ -28,4 +28,4 @@
 
 #import <OpenEmuXPCCommunicator/OEXPCCAgentConfiguration.h>
 #import <OpenEmuXPCCommunicator/OEXPCCAgent.h>
-#import <OpenEmuXPCCommunicator/OEXPCCAgent+DebugSupport.h>
+#import <OpenEmuXPCCommunicator/OEXPCDebugSupport.h>

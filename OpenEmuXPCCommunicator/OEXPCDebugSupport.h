@@ -26,7 +26,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OEXPCCAgent (DebugSupport)
+@interface OEXPCCDebugSupport: NSObject
 
 /*! used to query whether a debugger is currently attached to the process */
 @property (class, nonatomic, readonly) BOOL debuggerAttached;

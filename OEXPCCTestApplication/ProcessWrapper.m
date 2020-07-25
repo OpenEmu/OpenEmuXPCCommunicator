@@ -60,10 +60,10 @@
     [[OEXPCCAgent defaultAgent] retrieveListenerEndpointForIdentifier:_identifier completionHandler:
      ^(NSXPCListenerEndpoint *endpoint)
      {
-        _processConnection = [[NSXPCConnection alloc] initWithListenerEndpoint:endpoint];
+        self->_processConnection = [[NSXPCConnection alloc] initWithListenerEndpoint:endpoint];
         NSXPCInterface *service = [NSXPCInterface interfaceWithProtocol:@protocol(OEXPCCTestBackgroundService)];
-        [_processConnection setRemoteObjectInterface:service];
-        [_processConnection resume];
+        [self->_processConnection setRemoteObjectInterface:service];
+        [self->_processConnection resume];
         
         // Register OEXPCTransformer interface as argument 0 of the reply
         [service setInterface:[NSXPCInterface interfaceWithProtocol:@protocol(OEXPCTransformer)]
@@ -71,7 +71,7 @@
                 argumentIndex:0
                       ofReply:YES];
         
-        _remoteObjectProxy = [_processConnection remoteObjectProxy];
+        self->_remoteObjectProxy = [self->_processConnection remoteObjectProxy];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.serviceConnectButton.enabled = YES;
         });
@@ -88,7 +88,7 @@
     {
         [_remoteObjectProxy getTransformer:^(id<OEXPCTransformer> obj) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                _transformer = obj;
+                self->_transformer = obj;
                 btn.title = @"Disconnect";
                 [btn setEnabled:YES];
                 [self.serviceControlsGroup setEnabled:YES];

@@ -40,7 +40,7 @@
 int main(int argc, const char * argv[])
 {
 #if 0
-    [OEXPCCAgent waitForDebuggerUntil:5 * NSEC_PER_SEC];
+    [OEXPCCDebugSupport waitForDebuggerUntil:5 * NSEC_PER_SEC];
 #endif
 
     @autoreleasepool
