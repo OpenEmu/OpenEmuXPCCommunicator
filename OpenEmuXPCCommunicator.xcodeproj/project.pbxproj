@@ -107,6 +107,7 @@
 
 /* Begin PBXFileReference section */
 		0544B67E23D1347600F63D61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		05E6959E24CC77EA00ACFB35 /* OpenEmuXPCCommunicatorAgent-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenEmuXPCCommunicatorAgent-Info.plist"; sourceTree = "<group>"; };
 		05F6380722DFFB3700FC49FF /* OEXPCDebugSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OEXPCDebugSupport.h; sourceTree = "<group>"; };
 		05F6380822DFFB3700FC49FF /* OEXPCDebugSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OEXPCDebugSupport.m; sourceTree = "<group>"; };
 		C643AC5117935A9A00456656 /* OpenEmuXPCCommunicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenEmuXPCCommunicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				C643AC7417935C1200456656 /* OpenEmuXPCCommunicatorAgent-Prefix.pch */,
+				05E6959E24CC77EA00ACFB35 /* OpenEmuXPCCommunicatorAgent-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -601,6 +603,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -620,6 +623,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
+				MARKETING_VERSION = 2.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -651,6 +655,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -663,6 +668,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
+				MARKETING_VERSION = 2.0;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -714,8 +720,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -726,8 +735,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/OpenEmuXPCCommunicatorAgent/OpenEmuXPCCommunicatorAgent-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
