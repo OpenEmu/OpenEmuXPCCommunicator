@@ -26,5 +26,7 @@
 	<string>Copyright © 2013 OpenEmu Team. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
+	<key>OEAPIVersion</key>
+	<string>$(OE_API_VERSION)</string>
 </dict>
 </plist>

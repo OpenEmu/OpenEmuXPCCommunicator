@@ -16,5 +16,7 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2020 OpenEmu. All rights reserved.</string>
+	<key>OEAPIVersion</key>
+	<string>$(OE_API_VERSION)</string>
 </dict>
 </plist>
