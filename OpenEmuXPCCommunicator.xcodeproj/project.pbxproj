@@ -117,7 +117,7 @@
 		C643AC5817935A9B00456656 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C643AC5917935A9B00456656 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C643AC5C17935A9B00456656 /* OpenEmuXPCCommunicator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenEmuXPCCommunicator-Info.plist"; sourceTree = "<group>"; };
-		C643AC5E17935A9B00456656 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C643AC5E17935A9B00456656 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C643AC6017935A9B00456656 /* OpenEmuXPCCommunicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenEmuXPCCommunicator-Prefix.pch"; sourceTree = "<group>"; };
 		C643AC6D17935C1200456656 /* OpenEmuXPCCommunicatorAgent */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenEmuXPCCommunicatorAgent; sourceTree = BUILT_PRODUCTS_DIR; };
 		C643AC6E17935C1200456656 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,7 +134,7 @@
 		C643AC8D1793916E00456656 /* OpenEmuXPCCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenEmuXPCCommunicator.h; sourceTree = "<group>"; };
 		C643AC93179392C000456656 /* OEXPCCTestApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OEXPCCTestApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C643AC97179392C000456656 /* OEXPCCTestApplication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OEXPCCTestApplication-Info.plist"; sourceTree = "<group>"; };
-		C643AC99179392C000456656 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C643AC99179392C000456656 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C643AC9B179392C000456656 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C643AC9D179392C000456656 /* OEXPCCTestApplication-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OEXPCCTestApplication-Prefix.pch"; sourceTree = "<group>"; };
 		C643AC9F179392C000456656 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
