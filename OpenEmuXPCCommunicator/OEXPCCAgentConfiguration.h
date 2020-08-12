@@ -33,9 +33,9 @@
 + (OEXPCCAgentConfiguration *)defaultConfiguration;
 - (void)tearDownAgent;
 
-// Directory containing the agent binaries (Application Support).
-// If for any reason -tearDownAgent hasn't been called on app termination, you may use this method
-// to cleanup the folder.
+/** Temporary directory containing the agent binaries.
+ *  Randomly generated and created as soon as an agent is initialized, and
+ *  deleted as soon as all agents in the current process are torn down. */
 + (NSString *)agentsDirectory;
 
 @property(readonly) NSString *serviceName;

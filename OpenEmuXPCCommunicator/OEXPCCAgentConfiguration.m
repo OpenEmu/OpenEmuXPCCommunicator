@@ -31,6 +31,12 @@ NSString *const _OEXPCCAgentServiceNameArgumentPrefix = @"--org.openemu.OEXPCCAg
 NSString *const _OEXPCCAgentProcessIdentifierArgumentPrefix = @"--org.openemu.OEXPCCAgent.ProcessIdentifier=";
 NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
 
+/* Number of agents currently set up
+ * Used to delete the agents directory when the number of agents reaches zero*/
+static NSInteger liveAgents = 0;
+/* Directory where the agent launchd plists and binaries are located */
+static NSString *agentsDirectory = nil;
+
 @implementation OEXPCCAgentConfiguration
 {
     NSString *_serviceNameArgument;
@@ -65,7 +71,7 @@ NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
         _serviceName = [@[ _OEXPCCAgentServiceNamePrefix, [[NSUUID UUID] UUIDString] ] componentsJoinedByString:@""];
         _serviceNameArgument = [@[ _OEXPCCAgentServiceNameArgumentPrefix, _serviceName ] componentsJoinedByString:@""];
 
-        _agentProcessPath = [[[self class] OEXPCC_agentsApplicationSupportFolderPath] stringByAppendingPathComponent:_serviceName];
+        _agentProcessPath = [[[self class] agentsDirectory] stringByAppendingPathComponent:_serviceName];
         _agentPlistPath = [_agentProcessPath stringByAppendingPathExtension:@"plist"];
 
         [self OEXPCC_setUpAgent];
@@ -75,6 +81,7 @@ NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
 
 - (void)OEXPCC_setUpAgent
 {
+    [[self class] OEXPCC_incrementAgentCount];
     [[self OEXPCC_propertyListForAgent] writeToFile:_agentPlistPath atomically:YES];
     [[NSFileManager defaultManager] copyItemAtPath:[self OEXPCC_originalAgentProgramPath] toPath:_agentProcessPath error:NULL];
 
@@ -103,6 +110,7 @@ NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
 
     [[NSFileManager defaultManager] removeItemAtPath:_agentPlistPath error:NULL];
     [[NSFileManager defaultManager] removeItemAtPath:_agentProcessPath error:NULL];
+    [[self class] OEXPCC_decrementAgentCount];
 }
 
 - (NSString *)agentServiceNameProcessArgument
@@ -135,25 +143,40 @@ NSString *const _OEXPCCAgentServiceNamePrefix = @"org.openemu.OEXPCCAgent.";
     };
 }
 
-+ (NSString *)OEXPCC_agentsApplicationSupportFolderPath
-{
-    static NSString *agentsApplicationSupportFolderPath = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-        if([paths count] == 0) @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Could not find Application Support directory." userInfo:nil];
-
-        agentsApplicationSupportFolderPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"org.openemu.OEXPCCAgent.Agents"];
-
-        [[NSFileManager defaultManager] createDirectoryAtPath:agentsApplicationSupportFolderPath withIntermediateDirectories:YES attributes:nil error:NULL];
-    });
-
-    return agentsApplicationSupportFolderPath;
-}
-
 + (NSString *)agentsDirectory
 {
-    return [self OEXPCC_agentsApplicationSupportFolderPath];
+    @synchronized ([self class]) {
+        if (agentsDirectory)
+            return agentsDirectory;
+        
+        char *tempDirectoryTemplate = NULL;
+        asprintf(&tempDirectoryTemplate, "%s/org.openemu.OEXPCCAgent.Agents.XXXXXXXX", [NSTemporaryDirectory() fileSystemRepresentation]);
+        if (!mkdtemp(tempDirectoryTemplate)) {
+            [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Cannot create temporary agent plist directory." userInfo:nil];
+        }
+        agentsDirectory = [[NSURL fileURLWithFileSystemRepresentation:tempDirectoryTemplate isDirectory:YES relativeToURL:nil] path];
+        return agentsDirectory;
+    }
+}
+
++ (void)OEXPCC_incrementAgentCount
+{
+    @synchronized ([self class]) {
+        liveAgents++;
+        if (liveAgents > 0) {
+            [self agentsDirectory];
+        }
+    }
+}
+
++ (void)OEXPCC_decrementAgentCount
+{
+    @synchronized ([self class]) {
+        liveAgents = MAX(liveAgents - 1, 0);
+        if (liveAgents == 0 && agentsDirectory) {
+            [[NSFileManager defaultManager] removeItemAtPath:agentsDirectory error:nil];
+        }
+    }
 }
 
 @end
