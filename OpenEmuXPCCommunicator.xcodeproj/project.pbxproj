@@ -200,7 +200,9 @@
 				C643AC5317935A9A00456656 /* Frameworks */,
 				C643AC5217935A9A00456656 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 			usesTabs = 0;
 		};
 		C643AC5217935A9A00456656 /* Products */ = {
